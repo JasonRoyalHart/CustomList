@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomBuiltList<T>
+    class CustomBuiltList<T> : IEnumerable
     {
         T[] elements;
         public CustomBuiltList()
         {
-   
+            elements = new T[0];
         }
         public int Count()
         {
             int count = 0;
             if (elements != null)
             {
-                foreach (object elem in elements)
+                foreach (object element in elements)
                 {
                     count++;
                 }
@@ -51,42 +52,48 @@ namespace CustomList
 
         public bool Remove(T toRemove)
         {
-            T[] newElements = new T[Count() - 1];
-            int count = 0;
-            bool found = false;
-            int foundIndex = 0;
-            foreach (T element in elements)
+            if (elements.Count() > 0)
             {
-                if (element.Equals(toRemove))
-                {
-                    found = true;
-                    foundIndex = count;
-                }
-                count++;
-            }
-            if (found)
-            {
-                count = 0;
-                int newCount = 0;
+                T[] newElements = new T[Count() - 1];
+                int count = 0;
+                bool found = false;
+                int foundIndex = 0;
                 foreach (T element in elements)
                 {
-                    if (count != foundIndex)
+                    if (element.Equals(toRemove))
                     {
-                        newElements[newCount] = element;
-                        count++;
-                        newCount++;
+                        found = true;
+                        foundIndex = count;
                     }
-                    else
-                    {
-                        count++;
-                    }
+                    count++;
                 }
-                elements = newElements;
-                return true;
+                if (found)
+                {
+                    count = 0;
+                    int newCount = 0;
+                    foreach (T element in elements)
+                    {
+                        if (count != foundIndex)
+                        {
+                            newElements[newCount] = element;
+                            count++;
+                            newCount++;
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                    }
+                    elements = newElements;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                Console.WriteLine("{0} was not found in CustomList.",toRemove);
                 return false;
             }
         }
@@ -112,6 +119,14 @@ namespace CustomList
             }
             return mergedCustomBuiltList;
         }
+        public static CustomBuiltList<T> operator -(CustomBuiltList<T> customListOne, CustomBuiltList<T> customListTwo)
+        {
+            foreach (T element in customListTwo.elements)
+            {
+                customListOne.Remove(element);
+            }
+            return customListOne;
+        }
         public void Display()
         {
             if (elements != null)
@@ -125,6 +140,18 @@ namespace CustomList
             {
                 Console.WriteLine("Null list.");
             }
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int index = 0; index < elements.Length; index++)
+            {
+                yield return elements[index];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }
