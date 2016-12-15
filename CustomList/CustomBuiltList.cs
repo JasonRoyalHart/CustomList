@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomBuiltList<T> : IEnumerable
+    public class CustomBuiltList<T> : IEnumerable
     {
-        T[] elements;
+        public T[] elements;
         public CustomBuiltList()
         {
             elements = new T[0];
@@ -64,6 +64,7 @@ namespace CustomList
                     {
                         found = true;
                         foundIndex = count;
+                        break;
                     }
                     count++;
                 }
@@ -152,6 +153,18 @@ namespace CustomList
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public CustomBuiltList<T> Zip(CustomBuiltList<T> listToZip)
+        {
+            CustomBuiltList<T> zippedList = new CustomBuiltList<T>();
+            
+           for (int i = 0; i< Count(); i++)
+           {
+                zippedList.Add(elements[i]);
+                zippedList.Add(listToZip.elements[i]);
+            }
+            return zippedList;
         }
     }
 }

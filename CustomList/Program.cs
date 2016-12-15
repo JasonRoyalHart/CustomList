@@ -13,17 +13,21 @@ namespace CustomList
             CustomBuiltList<string> testList = new CustomBuiltList<string>();
             CustomBuiltList<string> testList2 = new CustomBuiltList<string>();
             CustomBuiltList<string> testList3 = new CustomBuiltList<string>();
-            testList.Remove("hskdj");
-            testList.Add("String 1");
-            testList.Add("String 2");
-            testList.Add("String 3");
-            testList2.Add("Sfdsfsdfds");
-            testList2.Add("dsfdfdsf");
-            testList2.Add("String 3");
-            foreach (string element in testList)
-            {
-                Console.WriteLine(element);
-            }
+            testList.Add("Hello");
+            testList.Add("World");
+            testList.Add("Blargh");
+            testList2.Add("Martians");
+            testList2.Add("Are");
+            testList2.Add("Invading");
+
+            testList3 = testList.Zip(testList2);
+            testList3.Display();
+//            Console.WriteLine(testList.elements[0]);
+
+
+
+ //           testList.Display();
+
             //testList3 = testList - testList2;
             //testList3.Display();
             ////List<string> realListOfStrings = new List<String>();
