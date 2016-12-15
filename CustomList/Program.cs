@@ -22,6 +22,8 @@ namespace CustomList
 
             testList3 = testList.Zip(testList2);
             testList3.Display();
+            testList3.Sort();
+            testList3.Display();
 //            Console.WriteLine(testList.elements[0]);
 
 

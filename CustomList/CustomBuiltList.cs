@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomBuiltList<T> : IEnumerable
+    public class CustomBuiltList<T> : IEnumerable where T : IComparable
     {
         public T[] elements;
         public CustomBuiltList()
@@ -157,14 +157,28 @@ namespace CustomList
 
         public CustomBuiltList<T> Zip(CustomBuiltList<T> listToZip)
         {
-            CustomBuiltList<T> zippedList = new CustomBuiltList<T>();
-            
+           CustomBuiltList<T> zippedList = new CustomBuiltList<T>();       
            for (int i = 0; i< Count(); i++)
            {
                 zippedList.Add(elements[i]);
                 zippedList.Add(listToZip.elements[i]);
             }
             return zippedList;
+        }
+        public void Sort()
+        {
+            for (int i = 0; i < Count(); i++)
+            {
+                for (int j = 0; j < Count() -1 ; j++)
+                {
+                    if (elements[j].CompareTo(elements[j+1]) > 0)
+                    {
+                        T tempElement = elements[j+1];
+                        elements[j+1] = elements[j];
+                        elements[j] = tempElement;
+                    }
+                }
+            }
         }
     }
 }
