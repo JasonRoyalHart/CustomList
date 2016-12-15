@@ -10,20 +10,24 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            CustomBuiltList<string> testList = new CustomBuiltList<string>();
-            CustomBuiltList<string> testList2 = new CustomBuiltList<string>();
-            CustomBuiltList<string> testList3 = new CustomBuiltList<string>();
-            testList.Add("Hello");
-            testList.Add("World");
-            testList.Add("Blargh");
-            testList2.Add("Martians");
-            testList2.Add("Are");
-            testList2.Add("Invading");
+            //CustomBuiltList<string> testList = new CustomBuiltList<string>();
+            //CustomBuiltList<string> testList2 = new CustomBuiltList<string>();
+            //CustomBuiltList<int> testList3 = new CustomBuiltList<int>();
+            ////testList.Add("Hello");
+            ////testList.Add("World");
+            ////testList.Add("Blargh");
+            ////testList2.Add("Martians");
+            ////testList2.Add("Are");
+            ////testList2.Add("Invading");
 
-            testList3 = testList.Zip(testList2);
-            testList3.Display();
-            testList3.Sort();
-            testList3.Display();
+            ////testList3 = testList.Zip(testList2);
+            //testList3.Add(5);
+            //testList3.Add(3);
+            //testList3.Add(17);
+            //testList3.Add(2);
+            //testList3.Display();
+            //testList3.Sort();
+            //testList3.Display();
 //            Console.WriteLine(testList.elements[0]);
 
 

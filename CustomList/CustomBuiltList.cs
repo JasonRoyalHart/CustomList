@@ -166,6 +166,7 @@ namespace CustomList
             return zippedList;
         }
         public void Sort()
+            //A very simple bubble sort
         {
             for (int i = 0; i < Count(); i++)
             {

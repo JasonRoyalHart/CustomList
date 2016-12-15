@@ -53,14 +53,7 @@ namespace CustomBuiltListTestProject
             numbers[2] = 3;
             Assert.AreEqual(numbers[2], testList.elements[2]);
         }
-        [TestMethod]
-        public void TestRemoveWithOneElement()
-        {
-            CustomBuiltList<string> testList = new CustomBuiltList<string>();
-            testList.Add("Hello");
-            bool result = testList.Remove("Hello");
-            Assert.AreEqual(null, testList.elements[0]);
-        }
+
         [TestMethod]
         public void TestRemoveToNoElementsThenAdd()
         {
@@ -138,7 +131,62 @@ namespace CustomBuiltListTestProject
             CustomBuiltList<double> testList = new CustomBuiltList<double>();
             Assert.AreEqual("", testList.ToString());
         }
+        [TestMethod]
+        public void TestSort()
+        {
+            CustomBuiltList<int> testList = new CustomBuiltList<int>();
+            testList.Add(5);
+            testList.Add(2);
+            testList.Add(10);
+            testList.Add(7);
+            testList.Sort();
+            int[] sorted = new int[4];
+            sorted[0] = 2;
+            sorted[1] = 5;
+            sorted[2] = 7;
+            sorted[3] = 10;
 
+            Assert.AreEqual(testList.elements[0], sorted[0]);
+            Assert.AreEqual(testList.elements[1], sorted[1]);
+            Assert.AreEqual(testList.elements[2], sorted[2]);
+            Assert.AreEqual(testList.elements[3], sorted[3]);
+        }
+        [TestMethod]
+        public void TestOverloadPlus()
+        {
+            CustomBuiltList<string> testList = new CustomBuiltList<string>();
+            testList.Add("String 1");
+            testList.Add("String 2");
+            testList.Add("String 3");
+            CustomBuiltList<string> testList2 = new CustomBuiltList<string>();
+            testList2.Add("String 4");
+            testList2.Add("String 5");
+            testList2.Add("String 6");
+            CustomBuiltList<string> testList3 = new CustomBuiltList<string>();
+            testList3 = testList + testList2;
+            Assert.AreEqual(testList3.elements[0], "String 1");
+            Assert.AreEqual(testList3.elements[1], "String 2");
+            Assert.AreEqual(testList3.elements[2], "String 3");
+            Assert.AreEqual(testList3.elements[3], "String 4");
+            Assert.AreEqual(testList3.elements[4], "String 5");
+            Assert.AreEqual(testList3.elements[5], "String 6");
+        }
+        [TestMethod]
+        public void TestOverloadMinus()
+        {
+            CustomBuiltList<string> testList = new CustomBuiltList<string>();
+            testList.Add("String 1");
+            testList.Add("String 2");
+            testList.Add("String 3");
+            testList.Add("String 4");
+            CustomBuiltList<string> testList2 = new CustomBuiltList<string>();
+            testList2.Add("String 2");
+            testList2.Add("String 3");
+            CustomBuiltList<string> testList3 = new CustomBuiltList<string>();
+            testList3 = testList - testList2;
+            Assert.AreEqual(testList3.elements[0], "String 1");
+            Assert.AreEqual(testList3.elements[1], "String 4");
+        }
 
 
     }
