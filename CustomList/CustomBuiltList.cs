@@ -23,12 +23,8 @@ namespace CustomList
                 {
                     count++;
                 }
-                return count;
             }
-            else
-            {
-                return 0;
-            }
+            return count;
         }
         public void Add(T toAdd)
         {
